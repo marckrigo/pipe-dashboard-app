@@ -22,8 +22,8 @@ export function PipeView() {
       <h1>Hello World!</h1>
       <p>Welcome to the custom Pipe-view!</p>
       <p>
-        Here you can embed another solution. For example, see below our community page embedded within the pipe view.
-        Take the opportunity to leave an app suggestion in our community. 😉
+        Here you can embed another solution. For example, see below our community page embedded
+        within the pipe view. Take the opportunity to leave an app suggestion in our community. 😉
       </p>
       <iframe src="https://app.pipefy.com/public/form/x6yC3ZCF?internal=sampleapps" />
     </div>

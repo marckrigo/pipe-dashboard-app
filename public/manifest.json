@@ -5,8 +5,5 @@
   "icon": "./pfy.png",
   "author": "Marcelo Rigo",
   "init_url": "./",
-  "features": [
-    "pipe-buttons",
-    "card-tab"
-  ]
+  "features": ["pipe-buttons", "card-tab"]
 }

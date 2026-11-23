@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { usePipefyApp } from '../hooks/usePipefyApp';
 import { useResize } from '../hooks/useResize';
+import type { LoggedUser, PipefyAppInstance } from '../types/pipefy';
 
 export function CardTab() {
   /**
@@ -11,15 +12,15 @@ export function CardTab() {
 
   const [cardId, setCardId] = useState('loading...');
   const [cardTitle, setCardTitle] = useState('loading...');
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState<LoggedUser | undefined>();
 
   useEffect(() => {
-    const getCardData = async () => {
+    const getCardData = async (instance: PipefyAppInstance) => {
       /**
        * Here we're using Pipefy Client function to get the current card data
        * See https://developers.pipefy.com/docs/get-pipefy-data for more details and other functions
        */
-      const cardData = await pipefyAppInstance.card();
+      const cardData = await instance.card();
       setCardId(cardData.id);
       setCardTitle(cardData.title);
 
@@ -27,7 +28,7 @@ export function CardTab() {
        * Here we're using the Functions API syntax to make requests directly to Pipefy's GraphQL
        * See https://developers.pipefy.com/docs/make-api-calls for more details and other functions
        */
-      const meDataResponse = await pipefyAppInstance.query('{ me { name, avatarUrl } }');
+      const meDataResponse = await instance.query<{ me: LoggedUser }>('{ me { name, avatarUrl } }');
       setUserData(meDataResponse.data.me);
     };
 
@@ -36,7 +37,7 @@ export function CardTab() {
        * You'll always need to call `pipefyApp.render` to use the client functions
        */
       pipefyApp.render(() => {
-        getCardData();
+        getCardData(pipefyAppInstance);
       });
     }
   }, [pipefyAppInstance, pipefyApp, cardId]);
@@ -61,7 +62,12 @@ export function CardTab() {
         <>
           <p>
             The current logged in user is:
-            <img width="20px" height="20px" src={userData.avatarUrl} alt={`${userData.name} avatar`} />
+            <img
+              width="20px"
+              height="20px"
+              src={userData.avatarUrl}
+              alt={`${userData.name} avatar`}
+            />
             <strong>{userData.name}</strong>
           </p>
         </>
