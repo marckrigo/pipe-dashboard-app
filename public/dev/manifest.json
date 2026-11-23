@@ -1,0 +1,12 @@
+{
+  "name": "Pipe Dashboard (Dev)",
+  "short_description": "Dashboard configurável com os dados do pipe",
+  "description": "Dashboard com gráficos e visões configuráveis a partir dos cards do pipe.",
+  "icon": "../pfy.png",
+  "author": "Marcelo Rigo",
+  "init_url": "./",
+  "features": [
+    "pipe-buttons",
+    "card-tab"
+  ]
+}

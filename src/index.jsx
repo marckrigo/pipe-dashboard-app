@@ -7,6 +7,10 @@ import { CardTab, Main, ModalCardButton, PipeView, Sidebar, SidebarCardButton } 
 
 import './styles/index.css';
 
+const basename = window.location.pathname.startsWith('/dev')
+  ? '/dev'
+  : '/';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,11 +36,9 @@ const router = createBrowserRouter([
     path: '/card-button-modal',
     element: <ModalCardButton />,
   },
-  /**
-   * Add a new item in this list for each different feature you want to add to your app.
-   * This entry will be used inside the App.jsx file to create the features.
-   */
-]);
+], {
+  basename,
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

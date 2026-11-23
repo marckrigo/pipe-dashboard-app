@@ -4,5 +4,9 @@
   "description": "Dashboard com gráficos e visões configuráveis a partir dos cards do pipe.",
   "icon": "./pfy.png",
   "author": "Marcelo Rigo",
-  "init_url": "https://pipe-dashboard-app.vercel.app/"
+  "init_url": "./",
+  "features": [
+    "pipe-buttons",
+    "card-tab"
+  ]
 }
