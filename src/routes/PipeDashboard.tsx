@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { usePipefyApp } from '../hooks/usePipefyApp';
 
-import '../styles/pipe-view.css';
+import '../styles/pipe-dashboard.css';
 
-export function PipeView() {
+export function PipeDashboard() {
   const { pipefyApp, pipefyAppInstance } = usePipefyApp();
 
   useEffect(() => {
@@ -18,13 +18,9 @@ export function PipeView() {
   }, [pipefyApp, pipefyAppInstance]);
 
   return (
-    <div className="pipe-view-content">
-      <h1>Hello World!</h1>
-      <p>Welcome to the custom Pipe-view!</p>
-      <p>
-        Here you can embed another solution. For example, see below our community page embedded
-        within the pipe view. Take the opportunity to leave an app suggestion in our community. 😉
-      </p>
+    <div className="pipe-dashboard-content">
+      <h1>Dashboard</h1>
+      <p>Acompanhe os cards do pipe em gráficos personalizáveis.</p>
       <iframe src="https://app.pipefy.com/public/form/x6yC3ZCF?internal=sampleapps" />
     </div>
   );

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { PipefyAppProvider } from './contexts/PipefyAppContext';
-import { CardTab, Main, ModalCardButton, PipeView, Sidebar, SidebarCardButton } from './routes';
+import { Main, PipeDashboard } from './routes';
 
 import './styles/index.css';
 
@@ -16,24 +16,8 @@ const router = createBrowserRouter(
       element: <Main />,
     },
     {
-      path: '/card-tab',
-      element: <CardTab />,
-    },
-    {
-      path: '/sidebar',
-      element: <Sidebar />,
-    },
-    {
-      path: '/pipe-view',
-      element: <PipeView />,
-    },
-    {
-      path: '/card-button-sidebar',
-      element: <SidebarCardButton />,
-    },
-    {
-      path: '/card-button-modal',
-      element: <ModalCardButton />,
+      path: '/pipe-dashboard',
+      element: <PipeDashboard />,
     },
   ],
   {
