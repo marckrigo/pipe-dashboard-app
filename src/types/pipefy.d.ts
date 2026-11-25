@@ -9,8 +9,9 @@ type PipefyCard = {
 };
 
 export type PipefyAppInstance = {
+  app: { pipeId?: string };
   card(): Promise<PipefyCard>;
-  query<T>(query: string): Promise<{ data: T }>;
+  query<T>(query: string, variables?: Record<string, unknown>): Promise<{ data: T }>;
   render(callback: () => void): void;
 };
 

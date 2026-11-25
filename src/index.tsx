@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { PipefyAppProvider } from './contexts/PipefyAppContext';
+import { PipefyAppProvider } from './contexts/pipefy-app-context';
 import { Main, PipeDashboard } from './routes';
 
 import './styles/index.css';

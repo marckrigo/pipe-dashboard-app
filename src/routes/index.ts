@@ -1,2 +1,2 @@
-export { Main } from './Main';
-export { PipeDashboard } from './PipeDashboard';
+export { Main } from './main-page';
+export { PipeDashboard } from './pipe-dashboard';

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { PipefyAppContext } from '../contexts/PipefyAppContext';
+import { PipefyAppContext } from '../contexts/pipefy-app-context';
 
 export const usePipefyApp = () => {
   const context = useContext(PipefyAppContext);
@@ -11,5 +11,8 @@ export const usePipefyApp = () => {
   return {
     pipefyApp: context.pipefyApp,
     pipefyAppInstance: context.pipefyAppInstance,
+    userId: context.userId,
+    pipeId: context.pipeId,
+    ready: context.ready,
   };
 };

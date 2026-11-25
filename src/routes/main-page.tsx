@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { usePipefyApp } from '../hooks/usePipefyApp';
+import { LandingPage } from '../components/landing-page';
+import { usePipefyApp } from '../hooks/use-pipefy-app';
 
 export function Main() {
-  const { pipefyApp } = usePipefyApp();
+  const { pipefyApp, ready } = usePipefyApp();
 
   useEffect(() => {
     if (pipefyApp) {
@@ -24,5 +25,10 @@ export function Main() {
     }
   }, [pipefyApp]);
 
-  return <div />;
+  // Render nothing inside Pipefy, where the feature is registered in the effect; outside, show the landing page.
+  if (!ready || pipefyApp) {
+    return <div />;
+  }
+
+  return <LandingPage />;
 }
