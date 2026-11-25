@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:PORT`.
+Open http://localhost:5173.
 
 The Pipefy SDK only works when the app is loaded inside Pipefy. Opening the
 address directly in a browser shows the informational page (or an SDK error,
@@ -102,8 +102,7 @@ informational landing page from `src/components/landing-page.tsx`.
 ### [src/routes/pipe-dashboard.tsx](src/routes/pipe-dashboard.tsx)
 
 The dashboard screen: chart type, grouping field, filters, loading overlays and
-the chart panel. Filters are applied only when the user clicks **Aplicar
-filtros**.
+the chart panel. Filters are applied only when the user clicks to prevent unnecessary loads.
 
 ### [src/components/dashboard-chart.tsx](src/components/dashboard-chart.tsx)
 
