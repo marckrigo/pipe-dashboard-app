@@ -15,7 +15,6 @@ Based on the official Pipefy sample app
 - Because of that, the app loads all cards once, stores them in the browser
   (separated by user and by pipe), and computes filters and charts locally.
 - After the first load, opening the dashboard only fetches what changed since the last sync.
-- Architecture, decisions and limitations: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ## Run locally
 
