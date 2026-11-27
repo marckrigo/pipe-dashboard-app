@@ -20,6 +20,8 @@ export type FilterOperator =
   | 'isEmpty'
   | 'isNotEmpty';
 
+export type FilterJoin = 'and' | 'or';
+
 export const OPERATORS_BY_KIND: Record<FieldKind, FilterOperator[]> = {
   text: ['contains', 'equals', 'notEquals', 'isEmpty', 'isNotEmpty'],
   number: ['equals', 'notEquals', 'gt', 'lt', 'isEmpty', 'isNotEmpty'],
@@ -33,6 +35,7 @@ export type CardFilter = {
   field: string;
   operator: FilterOperator;
   value: string;
+  join: FilterJoin;
 };
 
 export type ChartRow = {
@@ -197,7 +200,6 @@ function toNumberComparable(value: string, kind: FieldKind): number | null {
   return null;
 }
 
-/** Multiple filters are combined with AND, so a card must satisfy every active filter. */
 export function matchesFilter(card: Card, filter: CardFilter, fields: FieldOption[]): boolean {
   const values = getFieldValues(card, filter.field).map((value) => value.trim());
   const target = filter.value.trim().toLowerCase();
@@ -258,7 +260,15 @@ export function applyFilters(cards: Card[], filters: CardFilter[], fields: Field
     return cards;
   }
 
-  return cards.filter((card) => active.every((filter) => matchesFilter(card, filter, fields)));
+  return cards.filter((card) =>
+    active.reduce((result, filter, index) => {
+      const matches = matchesFilter(card, filter, fields);
+      if (index === 0) {
+        return matches;
+      }
+      return filter.join === 'or' ? result || matches : result && matches;
+    }, false),
+  );
 }
 
 /** Counts cards per axis value without a hard limit; the UI scrolls horizontally for extra groups. */

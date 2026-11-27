@@ -160,6 +160,14 @@
   font-weight: 400;
 }
 
+.filter-row .filter-join,
+.filter-row .filter-join-label {
+  flex: 0 0 62px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .filter-row button,
 .add-filter,
 .apply-filters {

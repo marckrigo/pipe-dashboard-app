@@ -8,6 +8,7 @@ import {
   type CardFilter,
   type ChartRow,
   type ChartType,
+  type FilterJoin,
   type FilterOperator,
 } from '../helpers/chart-data';
 import { useCardsSync } from '../hooks/use-cards-sync';
@@ -20,6 +21,11 @@ const CHART_TYPES: { value: ChartType; label: string }[] = [
   { value: 'line', label: 'Linha' },
   { value: 'area', label: 'Área' },
   { value: 'pie', label: 'Pizza' },
+];
+
+const JOINS: { value: FilterJoin; label: string }[] = [
+  { value: 'and', label: 'E' },
+  { value: 'or', label: 'OU' },
 ];
 
 const OPERATORS: { value: FilterOperator; label: string }[] = [
@@ -160,6 +166,7 @@ export function PipeDashboard() {
         field: fields[0]?.value ?? 'phase',
         operator: 'contains',
         value: '',
+        join: 'and',
       },
     ]);
   }
@@ -281,8 +288,28 @@ export function PipeDashboard() {
                   <small>Nenhum filtro configurado.</small>
                 ) : (
                   <div className="filter-list">
-                    {filters.map((filter) => (
+                    {filters.map((filter, index) => (
                       <div className="filter-row" key={filter.id}>
+                        {index === 0 ? (
+                          <span className="filter-join-label">Onde</span>
+                        ) : (
+                          <select
+                            className="filter-join"
+                            aria-label="Conector do filtro"
+                            value={filter.join}
+                            onChange={(event) =>
+                              changeFilter(filter.id, {
+                                join: event.target.value as FilterJoin,
+                              })
+                            }
+                          >
+                            {JOINS.map((option) => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </select>
+                        )}
                         <select
                           aria-label="Campo do filtro"
                           value={filter.field}
